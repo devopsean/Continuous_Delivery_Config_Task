@@ -1,17 +1,16 @@
-# Exercise: Config and Deployment
 configure_infrastructure: 
   docker:
-    - image: 
+    - image: python:3.7-alpine3.11
   steps:
     - checkout
     - add_ssh_keys:
-            # You can get this ID in the section where you registered the SSH Key
-            fingerprints: ["XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX"] 
+        fingerprints: ["a6:5e:08:02:40:3b:2b:18:92:d9:f9:7b:33:94:18:81"] # You can get this ID in the section where you registered the SSH Key
     - run:
-        name: Install Ansible
+        name: Install ansible
         command: |
-          # Install Ansible
+          # install the dependencies needed for your playbook
+          apk add --update ansible 
     - run:
-        name: Run Playbook and Configure server
+        name: Run playbook and Configure server
         command: |
-          # Your command
+          ansible-playbook -i inventory main.yml
