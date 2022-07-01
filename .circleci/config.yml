@@ -18,3 +18,8 @@ jobs:
           name: Run playbook and Configure server
           command: |
             ansible-playbook -i inventory main.yml
+workflows:
+  # Name the workflow
+  myWorkflow:
+    jobs:
+      - create_infrastructure
